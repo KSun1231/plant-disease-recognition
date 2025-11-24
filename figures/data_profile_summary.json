@@ -1,0 +1,26 @@
+{
+  "train_list_entries": 31541,
+  "val_list_entries": 4533,
+  "train_missing": 79,
+  "val_missing": 0,
+  "num_classes": 61,
+  "head_class_size": 2445,
+  "tail_class_size": 1,
+  "duplicate_pair_meta": {
+    "type": "cross",
+    "sample_a": {
+      "label": 58,
+      "path": "AgriculturalDisease_trainingset\\images\\58_1698.jpg"
+    },
+    "sample_b": {
+      "label": 58,
+      "path": "AgriculturalDisease_validationset\\images\\58_57.jpg"
+    }
+  },
+  "label_ambiguity_meta": {
+    "class_a": 47,
+    "class_b": 53,
+    "sample_a": "AgriculturalDisease_trainingset\\images\\47_10007.jpg",
+    "sample_b": "AgriculturalDisease_trainingset\\images\\53_30097.JPG"
+  }
+}

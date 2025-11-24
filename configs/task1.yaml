@@ -1,0 +1,44 @@
+dataset:
+  root: data/ProblemB-Data
+  train_list: datasets/train_list_rebalanced.txt
+  val_list: datasets/val_list_rebalanced.txt
+  img_size: 224
+  resize_short: 256
+  batch_size: 64
+  num_workers: -1  # -1 means use all CPU cores
+  class_balancing: true  # enable class-balanced sampling to mitigate long-tail
+
+model:
+  name: efficientnetv2_s
+  pretrained: true
+  drop_rate: 0.3
+
+train:
+  epochs: 150
+  lr: 0.0003
+  weight_decay: 0.0001
+  label_smoothing: 0.05
+  amp: true
+  ema: false
+  mixup_alpha: 0.0
+  cutmix_alpha: 0.0
+  seed: 42
+  grad_clip_norm: 1.0
+  # class-weighted cross entropy: none|sqrt|log|inverse
+  class_weighting: log
+  class_weight_log_alpha: 1.10   # used when scheme=log
+  class_weight_normalize_mean: true  # normalize to mean=1 to keep LR stable
+  # DRW (deferred re-weighting): start epoch (1-based). <=1 means from the beginning
+  drw_start_epoch: 6
+  # Logit-Adjusted (LA) settings
+  la_enable: true
+  la_tau: 1.0
+  eval_la: true  # apply the same logit adjustment in evaluation
+
+scheduler:
+  warmup_epochs: 3
+  min_lr: 0.000001
+
+save:
+  out_dir: outputs/task1_effv2s
+  save_best_metric: val_f1_macro
